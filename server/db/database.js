@@ -4,7 +4,12 @@ const pkg = require('../../package.json')
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 const dbUrl =
   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`
-const db = new Sequelize(dbUrl, { logging: false, native: true })
+const db = new Sequelize(dbUrl, {
+  logging: false,
+  native: true,
+  username: 'postgres',
+  password: 'postgres!@#$',
+})
 
 module.exports = db
 
